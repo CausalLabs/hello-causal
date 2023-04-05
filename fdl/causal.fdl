@@ -1,0 +1,34 @@
+## code: language=GraphQL
+## From the hello-causal directory, type:
+##
+##  ./causalc --push-fdl --typescript demo-ui/components/causal.ts fdl/causal.fdl
+##
+## to compile.
+
+
+feature ExampleFeature {
+    output {
+        "the button text"
+        callToActionCopy: String! = "Click Me!"
+
+        "descriptive text above the button"
+        descriptiveCopy: String! = "This is an irresistable button:"
+
+        "the button width"
+        width: String! = "150px"
+
+        "the button height"
+        height: String! = "40px"
+
+        "the button Hex color"
+        backgroundHexColor: String! = "#800000"
+
+        "the button font color"
+        fontColor: String! = "#ffffff"
+
+    }
+
+    "Occurs each time a user taps the button"
+    event ButtonClick {
+    }
+}
