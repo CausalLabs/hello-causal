@@ -1,0 +1,19 @@
+## code: language=GraphQL
+## From the hello-causal directory, type:
+##
+##  ./causalc --push-fdl --typescript demo-ui/components/causal.ts fdl/causal.fdl
+##
+## to compile.
+
+
+feature TutorialActions {
+    output {
+        "the button text"
+        callToAction: String! = "Submit"
+    }
+
+    "Occurs each time a user hits a button"
+    event ButtonClick {
+        count: Int!
+    }
+}

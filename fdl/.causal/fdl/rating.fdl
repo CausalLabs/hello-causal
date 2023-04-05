@@ -1,0 +1,17 @@
+
+feature TutorialActions {
+    args {
+        "The tutorial page"
+        tutorialPage: String!
+    }
+
+    output {
+        "the button text"
+        callToAction: String! = "Submit"
+    }
+
+    "Occurs each time a user hits a button"
+    event ButtonClick {
+        count: Int!
+    }
+}

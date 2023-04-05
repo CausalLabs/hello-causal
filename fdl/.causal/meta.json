@@ -1,0 +1,71 @@
+{
+  "data" : {
+    "authedTenant" : {
+      "name" : "causal_test",
+      "metrics" : [ ],
+      "environment" : {
+        "name" : "causal_test",
+        "id" : "f6d3a522-320e-47f6-9ad7-4534c050cfa0",
+        "isProduction" : true,
+        "warehouseLocation" : "s3://causal-demo/causal_test",
+        "fdl" : null,
+        "fdlOrder" : [ "causal.fdl" ],
+        "warehouseTables" : [ ]
+      },
+      "environments" : [ {
+        "name" : "causal_test",
+        "id" : "f6d3a522-320e-47f6-9ad7-4534c050cfa0",
+        "isProduction" : true,
+        "warehouseLocation" : "s3://causal-demo/causal_test",
+        "fdl" : null,
+        "fdlOrder" : null,
+        "warehouseTables" : [ ]
+      } ],
+      "audiences" : [ ],
+      "features" : [ {
+        "name" : "TutorialActions",
+        "isDeprecated" : false,
+        "deprecatedReason" : null,
+        "deprecatedBy" : null,
+        "fields" : [ {
+          "name" : "callToAction",
+          "isDeprecated" : false,
+          "deprecatedReason" : null,
+          "deprecatedBy" : null,
+          "controlValue" : "{\"constant\":\"Submit\"}"
+        }, {
+          "name" : "firstTime",
+          "isDeprecated" : false,
+          "deprecatedReason" : null,
+          "deprecatedBy" : null,
+          "controlValue" : ""
+        }, {
+          "name" : "impressionCount",
+          "isDeprecated" : false,
+          "deprecatedReason" : null,
+          "deprecatedBy" : null,
+          "controlValue" : ""
+        }, {
+          "name" : "impressionIds",
+          "isDeprecated" : false,
+          "deprecatedReason" : null,
+          "deprecatedBy" : null,
+          "controlValue" : ""
+        } ],
+        "events" : [ {
+          "name" : "ButtonClick",
+          "isDeprecated" : false,
+          "deprecatedReason" : null,
+          "deprecatedBy" : null,
+          "fields" : [ {
+            "name" : "count",
+            "isDeprecated" : false,
+            "deprecatedReason" : null,
+            "deprecatedBy" : null
+          } ]
+        } ]
+      } ],
+      "enums" : [ ]
+    }
+  }
+}
