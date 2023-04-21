@@ -98,10 +98,16 @@ export default function ReferenceFdlFromJavascript() {
               </button>
             </p>
 
+            <aside className="note">
+              Reminder: All paths are relative to the{" "}
+              <span className="inline-value">hello-causal</span> directory
+            </aside>
+
             <p>
-              1. From the hello-causal directory, open the file corresponding
-              with this webpage:
-              <code>.demo-ui/pages/reference-fdl-from-javascript</code>
+              1. In your favorite editor open the following file. It corresponds
+              to the webpage you are currently looking at. Changes to the file
+              will automatically be reflected in the browser.
+              <code>./demo-ui/pages/reference-fdl-from-javascript.tsx</code>
             </p>
 
             <p>

@@ -25,14 +25,15 @@ export default function ViewDataInDataWarehouse() {
               documentation
             </a>{" "}
             to learn about
-            <ul>
-              <li>Defining metrics, audiences, or experiments</li>
-              <li>Using other APIs, e.g. for Java, Ruby</li>
-              <li>Using external data sources for metrics</li>
-              <li>Employ Causal to improve Machine Learning models</li>
-              <li>Seting up your production environments</li>
-            </ul>
           </p>
+          <ul>
+            <li>Defining metrics, audiences, or experiments</li>
+            <li>Using other APIs, e.g. for Java, Ruby</li>
+            <li>Using external data sources for metrics</li>
+            <li>Employ Causal to improve Machine Learning models</li>
+            <li>Seting up your production environments</li>
+          </ul>
+
           <p>
             Email us at{" "}
             <a href="mailto:'support@causallabs.io'">support@causallabs.io</a>{" "}
