@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "NODE_OPTIONS='--inspect=9232' next dev -p 8080",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "cookies": "^0.8.0",
+    "cross-fetch": "^3.1.5",
+    "date-fns": "^2.29.3",
+    "gray-matter": "^4.0.3",
+    "next": "^13.0.2",
+    "prettier": "^2.7.1",
+    "react": "18.2.0",
+    "react-cookies": "^0.1.1",
+    "react-dom": "18.2.0",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^13.3.0",
+    "@types/cookies": "^0.7.7",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-cookies": "^0.1.0",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "autoprefixer": "^10.4.14",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "typescript": "^4.8.4"
+  }
+}

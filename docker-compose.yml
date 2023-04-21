@@ -1,0 +1,76 @@
+version: "3.9"
+services:
+  demo-ui:
+    image: causallabs/demo-ui:prerelease
+    ports:
+      - "8080:8080"
+      - "9255:9255" #debug using this port
+    environment:
+      NEXT_PUBLIC_CAUSAL_USERNAME: ${CAUSAL_USERNAME}
+      NEXT_PUBLIC_CAUSAL_PASSWORD: ${CAUSAL_PASSWORD}
+      NEXT_PUBLIC_AWS_USERNAME: ${AWS_USERNAME}
+      NEXT_PUBLIC_AWS_PASSWORD: ${AWS_PASSWORD}
+      NEXT_PUBLIC_AWS_URL: ${AWS_URL}
+    volumes:
+      - ./demo-ui/components:/usr/local/app/components:ro
+      - ./demo-ui/pages:/usr/local/app/pages:ro
+      - ./demo-ui/public:/usr/local/app/public:ro
+      - exclude:/usr/local/app/.next/
+    healthcheck:
+      test: curl --fail http://demo-ui:8080 || exit 1
+      start_period: 1s
+      timeout: 3s
+      retries: 30
+
+  iserver:
+    image: causallabs/iserver:0.34.5
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION}
+    ports:
+      - "3004:3004"
+    command:
+      - --token
+      - ${CAUSAL_TOKEN}
+      - --environment
+      - ${CAUSAL_ENVIRONMENT_ID}
+      - --enable-cmd
+      - --config-server
+      - https://tools.causallabs.io/
+    healthcheck:
+      test: curl --fail -X OPTIONS http://iserver:3004/nsessions || exit 1
+      start_period: 2s
+      timeout: 3s
+      retries: 10
+
+  etl-query:
+    image: causallabs/demo-etl-query:prerelease
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION}
+      ATHENA_WORKGROUP: ${ATHENA_WORKGROUP}
+      ATHENA_DATABASE: ${ATHENA_DATABASE}
+      ATHENA_RESULTS_BUCKET: ${ATHENA_RESULTS_BUCKET}
+    ports:
+      - "8081:8081"
+    healthcheck:
+      test: curl --fail http://etl-query:8081/actuator/health || exit 1
+      start_period: 2s
+      timeout: 3s
+      retries: 10
+
+  welcome:
+    image: causallabs/demo-welcome:prerelease
+    depends_on:
+      iserver:
+        condition: service_healthy
+      demo-ui:
+        condition: service_healthy
+      etl-query:
+        condition: service_healthy
+
+volumes:
+  exclude:
+    driver: local
