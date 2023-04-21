@@ -85,10 +85,7 @@ export default function ViewDataInDataWarehouse() {
               <Link href={`/etl-query?id=hello-causal`}>an example</Link> of
               Causal data returned from the data warehouse.
             </p>
-            <p>
-              <i>and/or</i>
-            </p>
-            <p>3. View the results in AWS Athena</p>
+            <p>3. View data in AWS Athena</p>
             <p>
               Log into the{" "}
               <Link
@@ -120,15 +117,15 @@ export default function ViewDataInDataWarehouse() {
                   </>
                 )}
             </p>
-            <aside className="note">
-              Ignore the banners about security and the query engine version
-            </aside>
             <p>
               Once you&apos;re in the <b>AWS Athena &gt; Query Editor</b>,
               select the <b>{process.env.NEXT_PUBLIC_AWS_USERNAME}</b>{" "}
               workgroup. Look in the upper right corner for the workgroup
               dropdown.
             </p>
+            <aside className="note">
+              Ignore the banners about security and the query engine version
+            </aside>
             <p>
               Run some example SQL, e.g.
               <code>SELECT * FROM &quot;example_feature&quot; limit 10;</code>

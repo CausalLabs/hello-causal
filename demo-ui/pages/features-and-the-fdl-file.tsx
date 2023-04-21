@@ -22,13 +22,13 @@ export default function FeaturesAndTheFdlFile() {
               <a href="https://tech.causallabs.io/docs/fdl/intro" target="new">
                 Feature Definition Language
               </a>{" "}
-              file to specify each feature&apos;s attributes and default values
-              in an .fdl file. FDL types are{" "}
+              file to specify each feature&apos;s attributes and initial seed
+              values in an .fdl file. FDL types are{" "}
               <a href="https://graphql.org/">GraphQL</a>{" "}
               <a href="https://www.apollographql.com/docs/apollo-server/schema/schema/">
                 types
               </a>
-              , so it is familiar and easy to use.
+              , so they are familiar and easy to use.
             </p>
             <p>
               Here&apos;s an example feature specified in FDL:
@@ -79,6 +79,10 @@ export default function FeaturesAndTheFdlFile() {
               Reminder: Please make sure to leave the Docker container running
               throughout this tutorial.
             </aside>
+            <aside className="note">
+              All paths are relative to the{" "}
+              <span className="inline-value">hello-causal</span> directory
+            </aside>
             <p>
               1.{" "}
               <Link
@@ -97,10 +101,6 @@ export default function FeaturesAndTheFdlFile() {
                 username={process.env.NEXT_PUBLIC_CAUSAL_USERNAME ?? "/error"}
                 password={process.env.NEXT_PUBLIC_CAUSAL_PASSWORD ?? "/error"}
               />
-              <aside className="note">
-                We encourage you to change your password! You can do so with the
-                “forgot password” flow on the login flow.
-              </aside>
             </>
             <p>
               2.{" "}
@@ -118,8 +118,8 @@ export default function FeaturesAndTheFdlFile() {
               ).
             </p>
             <p>
-              3. Starting from the hello-causal directory, open the following
-              Feature Definition Language file.
+              3. Open the following file in your favorite editor. As always the
+              path is relative to the hello-causal directory.
               <code>./fdl/causal.fdl</code>
             </p>
             <p>
@@ -128,7 +128,8 @@ export default function FeaturesAndTheFdlFile() {
               <code>backgroundColor: String! = "green"</code>
             </p>
             <p>
-              5. Run the following command in your terminal: <br />
+              5. In a the hello-causal directory, run the following command:{" "}
+              <br />
               <code>
                 ./causalc --push-fdl --typescript demo-ui/components/causal.ts
                 fdl/causal.fdl
@@ -137,10 +138,7 @@ export default function FeaturesAndTheFdlFile() {
               your FDL into TypeScript code, and that TypeScript code is used by
               this tutorial
             </p>
-            <p>
-              5. If you followed the instructions, the buttons on this page will
-              turn green.
-            </p>
+            <p>5. Refresh this page and the buttons will turn green.</p>
             <p>
               <button
                 style={{
