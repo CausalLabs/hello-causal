@@ -94,7 +94,7 @@ export default function ViewDataInDataWarehouse() {
               >
                 AWS Console
               </Link>{" "}
-              and then visit AWS{" "}
+              and then visit{" "}
               <Link
                 href="https://us-east-1.console.aws.amazon.com/athena/home?region=us-east-1#/query-editor"
                 target="new"
