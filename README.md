@@ -14,7 +14,7 @@ Here are the ports the demo opens on your computer and their purpose.
 
 | Application       | Port | Description            |
 | ----------------- | ---- | ---------------------- |
-| Demo-UI           | 8080 | Http Port              |
+| Demo-UI           | 8842 | Http Port              |
 | Demo-UI           | 9255 | Javascript Debug port. |
 | Impression Server | 3004 | Http Port              |
 | ETL-Query         | 8081 | Http Port              |
