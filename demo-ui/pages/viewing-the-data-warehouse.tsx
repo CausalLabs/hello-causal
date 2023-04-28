@@ -22,7 +22,7 @@ export default function ViewDataInDataWarehouse() {
       // running the ETL kills all session, so flush the cache
       // add a public method to do this
       session?._.cache.deleteAll(true);
-      const response = await fetch("http://localhost:8080/api/runEtl");
+      const response = await fetch("http://localhost:8842/api/runEtl");
       if (response.status == 200) setState("done");
       else setState("error");
     } catch (e) {

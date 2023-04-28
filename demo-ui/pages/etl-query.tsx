@@ -20,7 +20,7 @@ export default function EtlQuery() {
       setState("loading");
       setTicks(0);
       const res = await fetch(
-        `http://localhost:8080/api/queryEtl?queryId=${queryId}`
+        `http://localhost:8842/api/queryEtl?queryId=${queryId}`
       );
       if (res.status == 200) {
         const resultSet = await res.json();
