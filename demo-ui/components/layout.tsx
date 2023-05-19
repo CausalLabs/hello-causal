@@ -31,11 +31,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
         <p>
           {path == "/features-and-the-fdl-file" ? (
-            <b>Defining Features with FDL</b>
+            <b>Defining Features</b>
           ) : (
-            <Link href={`features-and-the-fdl-file`}>
-              Defining Features with FDL
-            </Link>
+            <Link href={`features-and-the-fdl-file`}>Defining Features</Link>
           )}
         </p>
 
@@ -76,6 +74,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Link href={`viewing-the-data-warehouse`}>
               Viewing the data warehouse
             </Link>
+          )}
+        </p>
+
+        <p>
+          {path == "/creating-metrics" ? (
+            <b>Creating a Metric</b>
+          ) : (
+            <Link href={`creating-metrics`}>Creating a Metric</Link>
+          )}
+        </p>
+
+        <p>
+          {path == "/creating-experiment" ? (
+            <b>Creating an Experiment</b>
+          ) : (
+            <Link href={`creating-experiment`}>Creating an Experiment</Link>
           )}
         </p>
 
