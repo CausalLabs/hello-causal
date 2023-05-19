@@ -71,6 +71,24 @@ export default function ReferenceFdlFromJavascript() {
               by Causal
             </h3>
 
+            <aside className="note">
+              Reminder: All paths are relative to the{" "}
+              <span className="inline-value">hello-causal</span> directory
+            </aside>
+
+            <p>
+              1. In your favorite editor open the following file. It corresponds
+              to the webpage you are currently looking at. Changes to the file
+              will automatically be reflected in the browser.
+              <code>./demo-ui/pages/reference-fdl-from-javascript.tsx</code>
+            </p>
+
+            <p>
+              2. Find &quot;&#x48;eadline To Change&quot; in the code, replace
+              it with the code below, and save the file.
+              <code>&#123;feature?.descriptiveCopy&#125;</code>
+            </p>
+
             <p>
               <b>
                 {/* -------------------------------------------------------------------- */}
@@ -96,24 +114,6 @@ export default function ReferenceFdlFromJavascript() {
               >
                 {feature?.callToActionCopy}
               </button>
-            </p>
-
-            <aside className="note">
-              Reminder: All paths are relative to the{" "}
-              <span className="inline-value">hello-causal</span> directory
-            </aside>
-
-            <p>
-              1. In your favorite editor open the following file. It corresponds
-              to the webpage you are currently looking at. Changes to the file
-              will automatically be reflected in the browser.
-              <code>./demo-ui/pages/reference-fdl-from-javascript.tsx</code>
-            </p>
-
-            <p>
-              2. Find &quot;&#x48;eadline To Change&quot; in the code, replace
-              it with the code below, and save the file.
-              <code>&#123;feature?.descriptiveCopy&#125;</code>
             </p>
 
             <p>
