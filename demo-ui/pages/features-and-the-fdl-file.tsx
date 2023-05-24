@@ -12,11 +12,11 @@ export default function FeaturesAndTheFdlFile() {
     <Layout>
       <ClientOnly>
         <Head>
-          <title>Defining Features with FDL</title>
+          <title>Defining Features</title>
         </Head>
         <div>
           <section>
-            <h2>Defining Features with FDL</h2>
+            <h2>Defining Features</h2>
             <p>
               Causal uses a{" "}
               <a href="https://tech.causallabs.io/docs/fdl/intro" target="new">

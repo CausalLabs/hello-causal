@@ -140,7 +140,7 @@ export default function ViewDataInDataWarehouse() {
           </section>
           <section>
             <p className="next-topic">
-              <Link href={`/fin`}>Next: Summary and Next Steps</Link>
+              <Link href={`/creating-metrics`}>Next: Creating a Metric</Link>
             </p>
           </section>
         </div>
