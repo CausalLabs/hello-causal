@@ -55,6 +55,23 @@ export default function CreatingExperiment() {
                 {feature?.callToActionCopy}
               </button>
             </p>
+            <p>
+              In our instructions for this experiment we will define the control
+              variant as red. If you have your ExampleFeature's backgroundColor
+              set to green from a previous section, you can change it to red{" "}
+              <a
+                href="https://tools.causallabs.io/features/edit/ExampleFeature"
+                target="_new"
+              >
+                in the Causal Dashboard.
+              </a>{" "}
+              <p>
+                <b> Note: </b>
+                {feature?.backgroundColor === "green"
+                  ? "ExampleFeature's backgroundColor is set to green. Please change it before proceeding."
+                  : "ExampleFeature's backgroundColor is not currently green. Proceed to the 'Try it out' section."}
+              </p>
+            </p>
             <h3>Try it out</h3>
 
             <p>
@@ -71,7 +88,9 @@ export default function CreatingExperiment() {
             </p>
             <p>
               4. Tap "Create Experiment". You'll see the experiment detail view.
-              Note the Control value of Example Feature: Background Color = red.
+              If you've gone through the previous tutorial steps and modified
+              the FDL, the Control value of Example Feature: Background Color
+              should now equal "green".
             </p>
             <p>
               5. Under GOALS AND METRICS &gt; Experiment Metric, choose the

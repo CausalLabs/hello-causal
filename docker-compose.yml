@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   demo-ui:
-    image: causallabs/demo-ui:hc1.0.2${DOCKER_ARCH_TAG_SUFFIX:-}
+    image: causallabs/demo-ui:hc1.0.3${DOCKER_ARCH_TAG_SUFFIX:-}
     ports:
       - "8842:8842"
       - "9255:9255" #debug using this port
@@ -23,7 +23,7 @@ services:
       retries: 30
 
   iserver:
-    image: causallabs/demo-iserver:hc1.0.2${DOCKER_ARCH_TAG_SUFFIX:-}
+    image: causallabs/demo-iserver:hc1.0.3${DOCKER_ARCH_TAG_SUFFIX:-}
     environment:
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
@@ -45,7 +45,7 @@ services:
       retries: 10
 
   etl-query:
-    image: causallabs/demo-etl-query:hc1.0.2${DOCKER_ARCH_TAG_SUFFIX:-}
+    image: causallabs/demo-etl-query:hc1.0.3${DOCKER_ARCH_TAG_SUFFIX:-}
     environment:
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
@@ -62,7 +62,7 @@ services:
       retries: 10
 
   welcome:
-    image: causallabs/demo-welcome:hc1.0.2${DOCKER_ARCH_TAG_SUFFIX:-}
+    image: causallabs/demo-welcome:hc1.0.3${DOCKER_ARCH_TAG_SUFFIX:-}
     depends_on:
       iserver:
         condition: service_healthy
