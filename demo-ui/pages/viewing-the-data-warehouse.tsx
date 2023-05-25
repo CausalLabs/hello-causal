@@ -135,7 +135,15 @@ export default function ViewDataInDataWarehouse() {
               definitions your team stores in Causal are always kept in sync
               with what&apos;s in the data warehouse so everyone on your team –
               engineers, data scientists, analysts, and product managers are
-              speaking the same language and relying on the same data.
+              speaking the same language and relying on the same data. To learn
+              more, read our data warehouse{" "}
+              <a
+                href="https://tech.causallabs.io/docs/data-warehouse/overview"
+                target="new"
+              >
+                tech docs
+              </a>
+              .
             </aside>
           </section>
           <section>
