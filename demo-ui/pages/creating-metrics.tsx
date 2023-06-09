@@ -13,7 +13,7 @@ export default function CreatingMetrics() {
         </Head>
         <div>
           <section>
-            <h2>Creating a Metric</h2>
+            <h2 data-testid="sectionheader">Creating a Metric</h2>
             <p>
               The metrics you define in Causal help your team keep track of user
               behaviors as they relate to your application and your business.

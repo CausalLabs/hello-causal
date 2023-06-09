@@ -15,7 +15,7 @@ export default function TrackingImpressionsAndEvents() {
         </Head>
         <div>
           <section>
-            <h2>Tracking Impressions and Events</h2>
+            <h2 data-testid="sectionheader">Tracking Impressions and Events</h2>
             <h3>Impressions</h3>
             <p>
               When a user&apos;s browser renders the features you&apos;ve

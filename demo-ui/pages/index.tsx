@@ -10,7 +10,7 @@ export default function Home() {
       </Head>
       <div>
         <section>
-          <h2>A Brief Intro to Causal</h2>
+          <h2 data-testid="sectionheader">A Brief Intro to Causal</h2>
           <p>
             The goal of this demo application is to help you understand the
             features and benefits of Causal so you feel confident using it in
@@ -29,7 +29,9 @@ export default function Home() {
                     <li>Define a feature in Causal</li>
                     <li>Use a Causal-defined feature in React</li>
                     <li>Manage Causal-defined features without code</li>
-                    <li>Track user impressions and events in Causal</li>
+                    <li>Track user impressions and events</li>
+                    <li>Create a metrics and run an experiment</li>
+                    <li>Connect Causal to an ML model with Sagemaker</li>
                     <li>View Causal data in a data warehouse</li>
                   </ul>
                 </td>
@@ -37,10 +39,9 @@ export default function Home() {
                   <h3>Out of Scope</h3>
                   <p>This demo does not cover how to:</p>
                   <ul>
-                    <li>Define metrics, audiences, or experiments</li>
+                    <li>Define audiences</li>
                     <li>Use other APIs, e.g. for Java, Ruby</li>
                     <li>Use external data sources for metrics</li>
-                    <li>Employ Causal to improve Machine Learning models</li>
                     <li>Set up your production environments</li>
                   </ul>
                 </td>

@@ -1,29 +1,4 @@
-import { useEffect, useState } from "react";
-
-function CopyToClipBoard({ txt }: { txt: string }) {
-  const [state, setState] = useState<"copy" | "copied">("copy");
-  useEffect(() => {
-    if (state == "copied") {
-      const id = setTimeout(() => {
-        setState("copy");
-      }, 1000);
-      return () => {
-        clearTimeout(id);
-      };
-    }
-  });
-
-  return (
-    <a
-      onClick={() => {
-        navigator.clipboard.writeText(txt);
-        setState("copied");
-      }}
-    >
-      {state == "copy" ? "copy to clipboard" : "copied!"}
-    </a>
-  );
-}
+import { CopyToClipBoard } from "./clipboard-utils";
 
 export default function CredentialsTable({
   accountId,
@@ -52,7 +27,7 @@ export default function CredentialsTable({
           <td>
             <b>username</b>
           </td>
-          <td>{username}</td>
+          <td data-testid="usernameCell">{username}</td>
           <td>
             <CopyToClipBoard txt={username} />
           </td>
@@ -61,7 +36,7 @@ export default function CredentialsTable({
           <td>
             <b>password</b>
           </td>
-          <td>{password}</td>
+          <td data-testid="passwordCell">{password}</td>
           <td>
             <CopyToClipBoard txt={password} />
           </td>
