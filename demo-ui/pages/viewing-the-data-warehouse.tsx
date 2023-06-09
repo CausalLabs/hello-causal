@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../components/layout";
+import { awsAccountId } from "./register";
 import { ClientOnly } from "../components/utils";
 import { useSession } from "../components/causal";
 import CredentialsTable from "../components/credentials";
+import { CopyableCodeBlock } from "../components/clipboard-utils";
 
 export default function ViewDataInDataWarehouse() {
   const [state, setState] = useState<"none" | "loading" | "done" | "error">(
@@ -13,7 +15,6 @@ export default function ViewDataInDataWarehouse() {
 
   const [ticks, setTicks] = useState(0);
   const session = useSession();
-
   const callEtlFunction = async () => {
     try {
       setState("loading");
@@ -49,7 +50,7 @@ export default function ViewDataInDataWarehouse() {
         </Head>
         <div>
           <section>
-            <h2>Viewing the data warehouse</h2>
+            <h2 data-testid="sectionheader">Viewing the data warehouse</h2>
             <p>
               Causal runs an ETL process hourly to reflect impression server
               data in the data warehouse.
@@ -66,6 +67,7 @@ export default function ViewDataInDataWarehouse() {
               Note: It takes up to 30 seconds to run the ETL
             </aside>
             <button
+              data-testid="demoButton"
               disabled={state == "loading"}
               className="demo-button"
               onClick={callEtlFunction}
@@ -78,8 +80,10 @@ export default function ViewDataInDataWarehouse() {
                 : "Run ETL"}
             </button>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <i>{state == "done" && <>ETL Complete!</>}</i>
-            <i>{state == "error" && <>ETL Failed. Please try again.</>}</i>
+            <i data-testid="status">{state == "done" && <>ETL Complete!</>}</i>
+            <i data-testid="status">
+              {state == "error" && <>ETL Failed. Please try again.</>}
+            </i>
             <p>
               2. View{" "}
               <Link href={`/etl-query?id=hello-causal`}>an example</Link> of
@@ -87,22 +91,13 @@ export default function ViewDataInDataWarehouse() {
             </p>
             <p>3. View data in AWS Athena</p>
             <p>
-              Log into the{" "}
-              <Link
-                href={process.env.NEXT_PUBLIC_AWS_URL ?? "/error"}
-                target="new"
-              >
-                AWS Console
-              </Link>{" "}
-              and then visit{" "}
+              Log into{" "}
               <Link
                 href="https://us-east-1.console.aws.amazon.com/athena/home?region=us-east-1#/query-editor"
                 target="new"
               >
-                AWS Athena
-              </Link>
-            </p>
-            <p>
+                AWS Athena.
+              </Link>{" "}
               Your <b>initial</b> credentials are:
             </p>
             <p>
@@ -110,13 +105,17 @@ export default function ViewDataInDataWarehouse() {
                 process.env.NEXT_PUBLIC_AWS_PASSWORD && (
                   <>
                     <CredentialsTable
-                      accountId="200238787088"
+                      accountId={awsAccountId()}
                       username={process.env.NEXT_PUBLIC_AWS_USERNAME}
                       password={process.env.NEXT_PUBLIC_AWS_PASSWORD}
                     />
                   </>
                 )}
             </p>
+            <aside className="note" style={{ marginTop: "-12px" }}>
+              If you are already logged into AWS with other credentials, you
+              will need to log out first
+            </aside>
             <p>
               Once you&apos;re in the <b>AWS Athena &gt; Query Editor</b>,
               select the <b>{process.env.NEXT_PUBLIC_AWS_USERNAME}</b>{" "}
@@ -128,7 +127,11 @@ export default function ViewDataInDataWarehouse() {
             </aside>
             <p>
               Run some example SQL, e.g.
-              <code>SELECT * FROM &quot;example_feature&quot; limit 10;</code>
+              <CopyableCodeBlock
+                txt={
+                  "SELECT SUM(impression_count) as num_impressions, SUM(CARDINALITY(button_click)) as num_clicks, background_color, width FROM example_feature GROUP BY background_color, width;"
+                }
+              />
             </p>
             <aside className="note">
               A benefit of the platform is that the front end feature

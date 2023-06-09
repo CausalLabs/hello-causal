@@ -3,6 +3,7 @@ import Link from "next/link";
 import { qb, useFeature } from "../components/causal";
 import Layout from "../components/layout";
 import { ClientOnly } from "../components/utils";
+import { CopyableCodeBlock } from "../components/clipboard-utils";
 
 export default function ReferenceFdlFromJavascript() {
   const feature = useFeature(qb().getExampleFeature());
@@ -15,13 +16,15 @@ export default function ReferenceFdlFromJavascript() {
         </Head>
         <div>
           <section>
-            <h2>Reference FDL features in Javascript</h2>
+            <h2 data-testid="sectionheader">
+              Reference FDL features in Javascript
+            </h2>
             <p>
               This app is built with <a href="https://react.dev/">React</a> and{" "}
               <a href="https://nextjs.org/">Next.js</a>. You can view complete
               React setup and usage instructions in our{" "}
               <a
-                href="https://tech.causallabs.io/docs/getting-started/trying/using-react"
+                href="https://tech.causallabs.io/docs/howto/using-react"
                 target="new"
               >
                 documentation
@@ -80,13 +83,15 @@ export default function ReferenceFdlFromJavascript() {
               1. In your favorite editor open the following file. It corresponds
               to the webpage you are currently looking at. Changes to the file
               will automatically be reflected in the browser.
-              <code>./demo-ui/pages/reference-fdl-from-javascript.tsx</code>
+              <CopyableCodeBlock
+                txt={"./demo-ui/pages/reference-fdl-from-javascript.tsx"}
+              />
             </p>
 
             <p>
               2. Find &quot;&#x48;eadline To Change&quot; in the code, replace
               it with the code below, and save the file.
-              <code>&#123;feature?.descriptiveCopy&#125;</code>
+              <CopyableCodeBlock txt={"{feature?.descriptiveCopy}"} />
             </p>
 
             <p>

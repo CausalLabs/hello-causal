@@ -15,7 +15,7 @@ export default function ManagingFeaturesWithoutCode() {
         </Head>
         <div>
           <section>
-            <h2>Managing features without code</h2>
+            <h2 data-testid="sectionheader">Managing features without code</h2>
             <p>
               All of the features you define in your .fdl file are visible in
               the Causal Dashboard.
@@ -40,22 +40,19 @@ export default function ManagingFeaturesWithoutCode() {
               in the Causal Dashboard.
             </p>
             <p>
-              2. Under <span className="inline-webui">Values for Rollout</span>,
-              change the <span className="inline-value">ExampleFeature</span>{" "}
-              output named <span className="inline-value">width</span> so it
-              equals <span className="inline-value">550px</span> (instead of the
-              prior default <span className="inline-value">150px</span>) and
-              click
-              <span className="inline-webui">SAVE</span>.
+              2. Under "Values for Rollout", change the{" "}
+              <span className="inline-value">ExampleFeature</span> output named{" "}
+              <span className="inline-value">width</span> so it equals{" "}
+              <span className="inline-value">550px</span> (instead of the prior
+              default <span className="inline-value">150px</span>) and tap SAVE.
             </p>
             <p>
               3. You&apos;ll see a{" "}
               <span className="inline-webui">Production Attribute Change</span>{" "}
-              warning. Tap <span className="inline-webui">Continue</span>.
+              warning. Tap <span className="inline-webui">Continue</span>. You
+              will see a much wider button below.
             </p>
             <p>
-              4. Refresh this page. You will see a much wider button below.
-              <br />
               <button
                 style={{
                   width: feature?.width,

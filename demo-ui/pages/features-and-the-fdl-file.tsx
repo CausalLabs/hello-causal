@@ -2,8 +2,11 @@ import Head from "next/head";
 import Link from "next/link";
 import { qb, useFeature } from "../components/causal";
 import CredentialsTable from "../components/credentials";
+import { CopyableCodeBlock } from "../components/clipboard-utils";
 import Layout from "../components/layout";
 import { ClientOnly } from "../components/utils";
+import { getWebtoolsUrl } from "./register";
+import React from "react";
 
 export default function FeaturesAndTheFdlFile() {
   const feature = useFeature(qb().getExampleFeature());
@@ -16,7 +19,7 @@ export default function FeaturesAndTheFdlFile() {
         </Head>
         <div>
           <section>
-            <h2>Defining Features</h2>
+            <h2 data-testid="sectionheader">Defining Features</h2>
             <p>
               Causal uses a{" "}
               <a href="https://tech.causallabs.io/docs/fdl/intro" target="new">
@@ -85,10 +88,7 @@ export default function FeaturesAndTheFdlFile() {
             </aside>
             <p>
               1.{" "}
-              <Link
-                href={"https://tools.causallabs.io/auth/causal"}
-                target="new"
-              >
+              <Link href={`${getWebtoolsUrl()}/auth/causal`} target="new">
                 Log in
               </Link>{" "}
               to the web tools
@@ -120,25 +120,29 @@ export default function FeaturesAndTheFdlFile() {
             <p>
               3. Open the following file in your favorite editor. As always the
               path is relative to the hello-causal directory.
-              <code>./fdl/causal.fdl</code>
+              <br />
+              <CopyableCodeBlock txt={"./fdl/causal.fdl"} />
             </p>
             <p>
               4. Change the background color from red to green and save the .fdl
               file
-              <code>backgroundColor: String! = "green"</code>
+              <CopyableCodeBlock txt={'backgroundColor: String! = "green"'} />
             </p>
             <p>
               5. In a the hello-causal directory, run the following command:{" "}
               <br />
-              <code>
-                ./causalc --push-fdl --typescript demo-ui/components/causal.ts
-                fdl/causal.fdl
-              </code>
+              <CopyableCodeBlock
+                txt={
+                  "./causalc --push-fdl --typescript demo-ui/components/causal.ts fdl/causal.fdl"
+                }
+              />
               The <span className="inline-value">causalc</span> script compiles
               your FDL into TypeScript code, and that TypeScript code is used by
-              this tutorial
+              this tutorial. When <span className="inline-value">causalc</span>{" "}
+              completes, along with your change to{" "}
+              <span className="inline-value">./fdl/causal.dfl</span>, the
+              buttons will turn green.
             </p>
-            <p>5. Refresh this page and the buttons will turn green.</p>
             <p>
               <button
                 style={{

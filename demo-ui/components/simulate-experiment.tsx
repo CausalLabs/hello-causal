@@ -61,7 +61,7 @@ export default function SimulateExperiment() {
               )
             }
           />{" "}
-          <span>% of users that see the control variant click the button</span>
+          <span>% of users that click the button in control</span>
         </p>
         <p>
           <input
@@ -76,7 +76,7 @@ export default function SimulateExperiment() {
               )
             }
           />{" "}
-          <span>% of users that see the other variant click the button</span>
+          <span>% of users that click the button in other variant</span>
           <p>
             <button
               style={{ width: "190px" }}
@@ -90,7 +90,9 @@ export default function SimulateExperiment() {
                 ? "Simulate more traffic"
                 : "Run Simulation"}
             </button>
-            <i>{state == "done" && <> Complete!</>}</i>
+            <i data-testid="state-complete">
+              {state == "done" && <>Complete!</>}
+            </i>
             <i>
               {state == "error" &&
                 ` Failed. ${res?.statusText}${

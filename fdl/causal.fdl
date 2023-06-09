@@ -32,3 +32,23 @@ feature ExampleFeature {
     event ButtonClick {
     }
 }
+
+feature CrossSellFeature {
+    args {
+        "the product name the user is on to personalize recommendations"
+        productName: String!
+
+        "the day of the week for model personalization"
+        dayOfWeek: Int!
+    }
+    output {
+        "the best selling products are our default recommendations"
+        results: [String!]! = ["milk", "eggs", "bread"]
+    }
+
+    "Occurs each time a user clicks on a cross sell item"
+    event CrossSellItemClick{
+        "The product clicked"
+        productName: String!
+    }
+}

@@ -17,7 +17,7 @@ export default function CreatingExperiment() {
         </Head>
         <div>
           <section>
-            <h2>Creating an Experiment</h2>
+            <h2 data-testid="sectionheader">Creating an Experiment</h2>
             <p>
               Causal helps you optimize your application by exposing users to
               different variants of features and by measuring which variant
@@ -27,17 +27,16 @@ export default function CreatingExperiment() {
               <b>Example</b>
             </p>
             <p>
-              Imagine that your team wants to compare two versions of a button –
-              A red one and a green one – to determine which one users are more
-              likely to click. We'll use the same “Example Feature” button from
-              our earlier lessons.
+              Imagine that your team wants to compare two versions of the
+              "Example Feature" button from our earlier lessons. The current
+              version ({feature?.backgroundColor}) and a blue button.
             </p>
             <p>
               <button
                 style={{
                   width: feature?.width,
                   height: feature?.height,
-                  background: "red",
+                  background: feature?.backgroundColor,
                   color: feature?.fontColor,
                 }}
               >
@@ -48,7 +47,7 @@ export default function CreatingExperiment() {
                 style={{
                   width: feature?.width,
                   height: feature?.height,
-                  background: "green",
+                  background: "blue",
                   color: feature?.fontColor,
                 }}
               >
@@ -56,24 +55,20 @@ export default function CreatingExperiment() {
               </button>
             </p>
             <p>
-              In our instructions for this experiment we will define the control
-              variant as red. If you have your ExampleFeature's backgroundColor
-              set to green from a previous section, you can change it to red{" "}
+              Remember, you can change the backgroundColor of the button{" "}
               <a
                 href="https://tools.causallabs.io/features/edit/ExampleFeature"
                 target="_new"
               >
                 in the Causal Dashboard.
-              </a>{" "}
-              <p>
-                <b> Note: </b>
-                {feature?.backgroundColor === "green"
-                  ? "ExampleFeature's backgroundColor is set to green. Please change it before proceeding."
-                  : "ExampleFeature's backgroundColor is not currently green. Proceed to the 'Try it out' section."}
-              </p>
+              </a>
             </p>
             <h3>Try it out</h3>
-
+            <aside className="note" style={{ marginTop: "-12px" }}>
+              Note: You will need to have created a metric from{" "}
+              <a href="/creating-metrics">Creating a Metric</a> to complete this
+              tutorial.
+            </aside>
             <p>
               1. In the Web Tools{" "}
               <a href="https://tools.causallabs.io/experiments" target="new">
@@ -81,16 +76,19 @@ export default function CreatingExperiment() {
               </a>{" "}
               section, click "Create New Experiment"
             </p>
-            <p>2. Give your experiment a name (any name is OK.)</p>
+            <p>
+              2. Give your experiment a name. (Any name is OK. If you are not
+              feeling creative try "Button experiment".)
+            </p>
             <p>
               3. Under Add Features, choose "Example Feature" for the Feature
               and "Background Color" for the Attribute
             </p>
             <p>
               4. Tap "Create Experiment". You'll see the experiment detail view.
-              If you've gone through the previous tutorial steps and modified
-              the FDL, the Control value of Example Feature: Background Color
-              should now equal "green".
+              If you've gone through the previous tutorial steps the Control
+              value of Example Feature: Background Color should now equal
+              "green" or "red".
             </p>
             <p>
               5. Under GOALS AND METRICS &gt; Experiment Metric, choose the
@@ -119,7 +117,7 @@ export default function CreatingExperiment() {
           </div>
           <section>
             <p className="next-topic">
-              <Link href={`/fin`}>Next: Summary and Next Steps</Link>
+              <Link href={`/running-ml-models`}>Next: Linking ML Models</Link>
             </p>
           </section>
         </div>

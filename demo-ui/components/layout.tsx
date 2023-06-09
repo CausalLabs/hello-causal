@@ -94,6 +94,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </p>
 
         <p>
+          {path == "/running-ml-models" ? (
+            <b>Linking ML Models</b>
+          ) : (
+            <Link href={`running-ml-models`}>Linking ML Models</Link>
+          )}
+        </p>
+
+        <p>
           {path == "/fin" ? (
             <b>Summary and Next Steps</b>
           ) : (

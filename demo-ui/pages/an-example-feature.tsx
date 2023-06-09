@@ -13,7 +13,7 @@ export default function YourFirstFeature() {
       </Head>
       <div>
         <section>
-          <h2>An example feature</h2>
+          <h2 data-testid="sectionheader">An example feature</h2>
           <p>Your team&apos;s application probably has many features.</p>
           <p>
             To understand how Causal manages features, let&apos;s focus on a
@@ -37,31 +37,35 @@ export default function YourFirstFeature() {
                 <td>
                   <b>Call To Action Copy</b>
                 </td>
-                <td>{feature?.callToActionCopy}</td>
+                <td data-testid="callToActionCell">
+                  {feature?.callToActionCopy}
+                </td>
               </tr>
               <tr>
                 <td>
                   <b>Width</b>
                 </td>
-                <td>{feature?.width}</td>
+                <td data-testid="widthCell">{feature?.width}</td>
               </tr>
               <tr>
                 <td>
                   <b>Height</b>
                 </td>
-                <td>{feature?.height}</td>
+                <td data-testid="heightCell">{feature?.height}</td>
               </tr>
               <tr>
                 <td>
                   <b>Font Color</b>
                 </td>
-                <td>{feature?.fontColor}</td>
+                <td data-testid="fontColorCell">{feature?.fontColor}</td>
               </tr>
               <tr>
                 <td>
                   <b>Background Color</b>
                 </td>
-                <td>{feature?.backgroundColor}</td>
+                <td data-testid="backgroundColorCell">
+                  {feature?.backgroundColor}
+                </td>
               </tr>
             </tbody>
           </table>

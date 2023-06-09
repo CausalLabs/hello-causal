@@ -5,5 +5,4 @@ ENV=$(grep CAUSAL_ENVIRONMENT_ID .env | cut -d= -f2)
 COMPILER_VERSION=$(grep COMPILER_VERSION .compiler.version | cut -d= -f2)
 
 docker run --name causalc --rm -t --user "$(id -u):$(id -g)" -v "$(pwd)/fdl:/fdl" -v "$(pwd)/demo-ui:/demo-ui" \
--it causallabs/demo-compiler:"$COMPILER_VERSION" --token "$TOKEN" --environment "$ENV" \
---config-server https://tools.causallabs.io --webhook-server https://tools.causallabs.io "$@"
+-it causallabs/demo-compiler:"$COMPILER_VERSION" --token "$TOKEN" --environment "$ENV" "$@"

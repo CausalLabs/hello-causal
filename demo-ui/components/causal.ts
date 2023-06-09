@@ -80,12 +80,48 @@ export class ExampleFeature extends FeatureBase {
     }
   }
 
+export class CrossSellFeature extends FeatureBase {
+    /** 
+    * the product name the user is on to personalize recommendations
+    */
+    readonly productName: string = "";
+    /** 
+    * the day of the week for model personalization
+    */
+    readonly dayOfWeek: number = 0;
+    /** 
+     * the best selling products are our default recommendations
+     *
+     *  Control: ["milk", "eggs", "bread"]
+     */
+    readonly results: string[] = ["milk", "eggs", "bread"];
+
+    /**
+     * Occurs each time a user clicks on a cross sell item
+    *  productName: The product clicked 
+    */
+    signalCrossSellItemClick( { productName } 
+        : {  productName : string  } ) : void {
+            signalInstance(this, "CrossSellItemClick", arguments[0]);
+    }
+    /** 
+     * Occurs each time a user clicks on a cross sell item
+     *  productName: The product clicked 
+     */
+    static signalCrossSellItemClick( sessionKeys: SessionKeys | Session, impressionId : string,  { productName } 
+        : {  productName : string  } ) : void
+ {
+        signalStatic("CrossSellFeature", "CrossSellItemClick", [...arguments]);
+    }
+  }
+
 
 /* eslint-enable */
 
 /** @deprecated */
 export const allFeatureTypes = {
     ExampleFeature,
+    CrossSellFeature,
 
     };
 
@@ -148,6 +184,11 @@ class Query<T extends FeatureNames>{
         : Query<T | "ExampleFeature"> {
         return this;
     }
+    getCrossSellFeature( { productName, dayOfWeek } 
+      : {  productName : string,   dayOfWeek : number  } )
+        : Query<T | "CrossSellFeature"> {
+        return this;
+    }
 
 
     readonly _: {
@@ -169,6 +210,7 @@ class Query<T extends FeatureNames>{
  */
 export const defaultFlags: Flags<FeatureNames> = {
     ExampleFeature: true,
+    CrossSellFeature: true,
 
 };
 

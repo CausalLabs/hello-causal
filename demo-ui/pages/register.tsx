@@ -1,6 +1,30 @@
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import React from "react";
 import { ClientOnly, getOrMakeDeviceId } from "../components/utils";
+
+export function awsAccountId(): string {
+  const match = (process.env.NEXT_PUBLIC_AWS_URL ?? "/error").match(
+    "https:\\/\\/(?<aws_id>\\d+).signin.aws.amazon.com"
+  );
+
+  if (match?.groups != null) {
+    return match.groups["aws_id"];
+  }
+  return "200238787088"; //fallback default to env
+}
+
+export function getWebtoolsUrl(): string {
+  const router = useRouter();
+  const accountId = awsAccountId();
+  // This makes development a little easier
+  const humanToolsUrl =
+    accountId == "200238787088"
+      ? "https://tools.causallabs.io"
+      : "https://dev.causallabs.io";
+
+  const human = router.query.fromTest == null;
+  return human ? humanToolsUrl : "https://dev.causallabs.io";
+}
 
 /**
  * This is an internal page which registers your browser with the tools.causallabs.io debugger screen. This allows you
@@ -28,7 +52,7 @@ export default function Page() {
 
   window.localStorage.setItem("_causal_registered", "true");
 
-  const webtoolsUrl = "https://tools.causallabs.io";
+  const webtoolsUrl = getWebtoolsUrl();
   const redirectTo = `${webtoolsUrl}/QA?persistentId=${persistentId}`;
   router.push(redirectTo);
   return (

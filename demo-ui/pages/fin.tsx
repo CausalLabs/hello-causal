@@ -9,13 +9,15 @@ export default function ViewDataInDataWarehouse() {
       </Head>
       <div>
         <section>
-          <h2>Summary and Next Steps</h2>
+          <h2 data-testid="sectionheader">Summary and Next Steps</h2>
           <p>In this demo, you learned how to:</p>
           <ul>
             <li>Define a feature in Causal</li>
             <li>Use a Causal-defined feature in React</li>
             <li>Manage Causal-defined features without code</li>
             <li>Track user impressions and events in Causal</li>
+            <li>Set up an experiment</li>
+            <li>Link a Sagemaker model using Causal-defined features</li>
             <li>View Causal data in a data warehouse</li>
           </ul>
           <h3>Next Steps</h3>
@@ -27,10 +29,9 @@ export default function ViewDataInDataWarehouse() {
             to learn about
           </p>
           <ul>
-            <li>Defining metrics, audiences, or experiments</li>
+            <li>Defining audiences</li>
             <li>Using other APIs, e.g. for Java, Ruby</li>
             <li>Using external data sources for metrics</li>
-            <li>Employ Causal to improve Machine Learning models</li>
             <li>Seting up your production environments</li>
           </ul>
 

@@ -48,7 +48,7 @@ export default function EtlQuery() {
   return (
     <Layout>
       <Head>ETL Results for {queryId}</Head>
-      <h2>Data warehouse response example</h2>
+      <h2 data-testid="sectionheader">Data warehouse response example</h2>
       <div>
         Click the "Run Query" button below to see the results of the following
         SQL in{" "}
