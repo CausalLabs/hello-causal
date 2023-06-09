@@ -36,6 +36,8 @@ services:
       - --environment
       - ${CAUSAL_ENVIRONMENT_ID}
       - --enable-cmd
+      - --config-server
+      - https://tools.causallabs.io/
     healthcheck:
       test: curl --fail -X OPTIONS http://iserver:3004/nsessions || exit 1
       start_period: 2s
