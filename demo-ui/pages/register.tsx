@@ -1,6 +1,6 @@
-import { NextRouter, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import React from "react";
-import { ClientOnly, getOrMakeDeviceId } from "../components/utils";
+import { getOrMakeDeviceId } from "../components/utils";
 
 export function awsAccountId(): string {
   const match = (process.env.NEXT_PUBLIC_AWS_URL ?? "/error").match(
@@ -56,12 +56,10 @@ export default function Page() {
   const redirectTo = `${webtoolsUrl}/QA?persistentId=${persistentId}`;
   router.push(redirectTo);
   return (
-    <ClientOnly>
-      <div style={{ display: "none" }}>
-        <div>iserver: {iserver}</div>
-        <div>webtoolsUrl: {webtoolsUrl}</div>
-        <div>redirectTo: {redirectTo}</div>
-      </div>
-    </ClientOnly>
+    <div style={{ display: "none" }}>
+      <div>iserver: {iserver}</div>
+      <div>webtoolsUrl: {webtoolsUrl}</div>
+      <div>redirectTo: {redirectTo}</div>
+    </div>
   );
 }

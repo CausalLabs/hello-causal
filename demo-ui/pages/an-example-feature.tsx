@@ -75,11 +75,11 @@ export default function YourFirstFeature() {
             Now, let&apos;s look at how Causal manages features and their
             attributes.
           </p>
-          <p className="next-topic">
+          <div className="next-topic">
             <Link href={`./features-and-the-fdl-file`}>
               Next: Defining Features with FDL
             </Link>
-          </p>
+          </div>
         </section>
       </div>
     </Layout>

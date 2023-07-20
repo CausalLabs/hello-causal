@@ -30,7 +30,7 @@ export function CopyToClipBoard({ txt }: { txt: string }) {
 
 export function CopyableCodeBlock({ txt }: { txt: string }) {
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", margin: 0 }}>
       <code>{txt}</code>
       <span style={{ marginLeft: "-22px", marginTop: "9px" }}>
         <CopyToClipBoard txt={txt} />

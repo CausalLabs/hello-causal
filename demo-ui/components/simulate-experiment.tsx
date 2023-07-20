@@ -43,12 +43,12 @@ export default function SimulateExperiment() {
   return (
     <div>
       <section>
-        <p>
+        <div>
           Now that your experiment is running, let's simulate impressions and
           clicks to the Control and Variant version of your site.
-        </p>
+        </div>
 
-        <p>
+        <div>
           <input
             type="number"
             pattern="[0-9]*"
@@ -62,8 +62,8 @@ export default function SimulateExperiment() {
             }
           />{" "}
           <span>% of users that click the button in control</span>
-        </p>
-        <p>
+        </div>
+        <div>
           <input
             type="number"
             pattern="[0-9]*"
@@ -77,7 +77,7 @@ export default function SimulateExperiment() {
             }
           />{" "}
           <span>% of users that click the button in other variant</span>
-          <p>
+          <div>
             <button
               style={{ width: "190px" }}
               className="demo-button"
@@ -99,20 +99,21 @@ export default function SimulateExperiment() {
                   res?.statusText ? ". " : ""
                 }Please try running again.`}
             </i>
-          </p>
-        </p>
-        <p>
-          Once you simulate some traffic, you can view the results of your
-          experiment in the Web Tools{" "}
+          </div>
+        </div>
+        <div>
+          We'll have to run the ETL to collect the experiment data so it can
+          take about 30 seconds. Once you simulate some traffic, you can view
+          the results of your experiment in the Web Tools{" "}
           <a href="https://tools.causallabs.io/experiments" target="new">
             Experiments
           </a>{" "}
           section by clicking into your experiment.
-        </p>
-        <p>
+        </div>
+        <div>
           You can simulate more traffic to see what your experiment would look
           like with more data.
-        </p>
+        </div>
       </section>
     </div>
   );

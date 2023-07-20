@@ -13,31 +13,31 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="float-container sidebar">
         <h3>Contents</h3>
 
-        <p>
+        <div>
           {path == "/" ? (
             <b>Introduction</b>
           ) : (
             <Link href={`/`}>Introduction</Link>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           {path == "/an-example-feature" ? (
             <b>An Example Feature</b>
           ) : (
             <Link href={`an-example-feature`}>An Example Feature</Link>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           {path == "/features-and-the-fdl-file" ? (
             <b>Defining Features</b>
           ) : (
             <Link href={`features-and-the-fdl-file`}>Defining Features</Link>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           {path == "/reference-fdl-from-javascript" ? (
             <b>Reference FDL features in Javascript</b>
           ) : (
@@ -45,9 +45,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               Reference FDL features in Javascript
             </Link>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           {path == "/managing-features-without-code" ? (
             <b>Managing features without code</b>
           ) : (
@@ -55,9 +55,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               Managing features without code
             </Link>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           {path == "/tracking-impressions-and-events" ? (
             <b>Tracking Impressions and Events</b>
           ) : (
@@ -65,9 +65,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               Tracking Impressions and Events
             </Link>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           {path == "/viewing-the-data-warehouse" ? (
             <b>Viewing the data warehouse</b>
           ) : (
@@ -75,39 +75,39 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               Viewing the data warehouse
             </Link>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           {path == "/creating-metrics" ? (
             <b>Creating a Metric</b>
           ) : (
             <Link href={`creating-metrics`}>Creating a Metric</Link>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           {path == "/creating-experiment" ? (
             <b>Creating an Experiment</b>
           ) : (
             <Link href={`creating-experiment`}>Creating an Experiment</Link>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           {path == "/running-ml-models" ? (
             <b>Linking ML Models</b>
           ) : (
             <Link href={`running-ml-models`}>Linking ML Models</Link>
           )}
-        </p>
+        </div>
 
-        <p>
+        <div>
           {path == "/fin" ? (
             <b>Summary and Next Steps</b>
           ) : (
             <Link href={`fin`}>Summary and Next Steps</Link>
           )}
-        </p>
+        </div>
       </div>
       <div className="float-container content">{children}</div>
     </div>
