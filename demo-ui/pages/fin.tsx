@@ -10,7 +10,7 @@ export default function ViewDataInDataWarehouse() {
       <div>
         <section>
           <h2 data-testid="sectionheader">Summary and Next Steps</h2>
-          <p>In this demo, you learned how to:</p>
+          <div>In this demo, you learned how to:</div>
           <ul>
             <li>Define a feature in Causal</li>
             <li>Use a Causal-defined feature in React</li>
@@ -21,13 +21,13 @@ export default function ViewDataInDataWarehouse() {
             <li>View Causal data in a data warehouse</li>
           </ul>
           <h3>Next Steps</h3>
-          <p>
+          <div>
             Read our{" "}
             <a href="https://tech.causallabs.io/docs/index" target="new">
               documentation
             </a>{" "}
             to learn about
-          </p>
+          </div>
           <ul>
             <li>Defining audiences</li>
             <li>Using other APIs, e.g. for Java, Ruby</li>
@@ -35,14 +35,14 @@ export default function ViewDataInDataWarehouse() {
             <li>Seting up your production environments</li>
           </ul>
 
-          <p>
+          <div>
             Email us at{" "}
             <a href="mailto:'support@causallabs.io'">support@causallabs.io</a>{" "}
             if you&apos;d like to learn more about how to use Causal in your own
             application. We&apos;d love to hear any feedback you have.
-          </p>
+          </div>
           <h3>Thanks!</h3>
-          <p>The Causal Team</p>
+          <div>The Causal Team</div>
         </section>
       </div>
     </Layout>

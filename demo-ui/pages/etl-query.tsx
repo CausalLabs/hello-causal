@@ -3,7 +3,6 @@ import Link from "next/link";
 import Layout from "../components/layout";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { ClientOnly } from "../components/utils";
 
 export default function EtlQuery() {
   const router = useRouter();
@@ -76,32 +75,30 @@ export default function EtlQuery() {
             : "Run Query"}
         </button>
       </div>
-      <ClientOnly>
-        {state == "error" && "There was an error querying {queryId}"}
-        {state == "done" ? (
-          <p>
-            <table className="results-table">
-              <tbody>
-                {data?.map((row, idx1) => (
-                  <tr key={idx1}>
-                    {row.map((cell, idx2) => (
-                      <td key={idx2}>{cell}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </p>
-        ) : (
-          <div style={{ height: "220px" }}></div>
-        )}
-      </ClientOnly>
+      {state == "error" && "There was an error querying {queryId}"}
+      {state == "done" ? (
+        <div>
+          <table className="results-table">
+            <tbody>
+              {data?.map((row, idx1) => (
+                <tr key={idx1}>
+                  {row.map((cell, idx2) => (
+                    <td key={idx2}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div style={{ height: "220px" }}></div>
+      )}
       <div style={{ clear: "both" }}></div>
-      <p className="prev-topic">
+      <div className="prev-topic">
         <Link href={`/viewing-the-data-warehouse`}>
           Previous: Back to Viewing the data warehouse
         </Link>
-      </p>
+      </div>
     </Layout>
   );
 }
