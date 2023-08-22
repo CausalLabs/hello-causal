@@ -1,0 +1,19 @@
+.hc-button {
+  @apply text-white font-semibold py-2 px-7 rounded-full;
+  background: var(--dark-green);
+  cursor: pointer;
+}
+
+.hc-button:hover {
+  background: var(--hover-green);
+  text-decoration: none;
+}
+
+.disabled {
+  background: var(--medgray);
+}
+
+.hc-button:hover.disabled {
+  background: var(--medgray);
+  cursor: not-allowed;
+}

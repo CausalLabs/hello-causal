@@ -1,0 +1,40 @@
+.card:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  z-index: 100;
+}
+
+.menu-box {
+  border-radius: 20px;
+  background: #f3f3f3;
+  position: relative;
+  height: 642px;
+  max-width: 686px;
+}
+
+.menu1 {
+  position: relative;
+  left: -45px;
+  top: -20px;
+}
+
+.menu2 {
+  position: relative;
+  left: -45px;
+  top: -20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .menu2 {
+    position: relative;
+    left: -340px;
+    top: 500px;
+  }
+
+  .menu-box {
+    border-radius: 20px;
+    background: #f3f3f3;
+    position: relative;
+    height: 1100px;
+  }
+}

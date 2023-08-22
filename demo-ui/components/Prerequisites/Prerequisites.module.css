@@ -1,0 +1,13 @@
+.table {
+  border-collapse: collapse;
+}
+
+.table td {
+  padding: 20px;
+  border-top: var(--table-border);
+  border-bottom: var(--table-border);
+}
+
+.table td:first-of-type {
+  width: 116px;
+}

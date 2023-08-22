@@ -1,0 +1,28 @@
+.table {
+  border-collapse: collapse;
+  font-family: Roboto;
+  margin: 12px;
+  font-size: 14px;
+}
+
+.table th {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--medgray);
+  text-align: left;
+}
+
+.table td {
+  color: var(--dk-gray);
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-right: 24px;
+  text-align: left;
+  border-top: var(--table-border);
+  border-bottom: var(--table-border);
+}
+
+.table td:first-of-type {
+  font-weight: 600;
+}

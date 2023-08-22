@@ -1,12 +1,14 @@
 import Head from "next/head";
-import Link from "next/link";
-import { qb, useFeature } from "../components/causal";
-import Layout from "../components/layout";
-import { CopyableCodeBlock } from "../components/clipboard-utils";
+import { CardWithGrid } from "../components/Card/Card";
+import { CodeBlock } from "../components/CodeBlock/CodeBlock";
+import { HCButton } from "../components/HCButton/HCButton";
+import { Instruction } from "../components/instruction/Instruction";
+import { Layout } from "../components/Layout/Layout";
+import { Literal } from "../components/Literal/Literal";
+import { Note } from "../components/Note/Note";
+import { Video } from "../components/Video/Video";
 
 export default function ReferenceFdlFromJavascript() {
-  const feature = useFeature(qb().getExampleFeature());
-
   return (
     <Layout>
       <Head>
@@ -14,144 +16,144 @@ export default function ReferenceFdlFromJavascript() {
       </Head>
       <div>
         <section>
-          <h2 data-testid="sectionheader">
+          <h1 data-testid="sectionheader">
             Reference FDL features in Javascript
-          </h2>
+          </h1>
           <div>
             This app is built with <a href="https://react.dev/">React</a> and{" "}
             <a href="https://nextjs.org/">Next.js</a>. You can view complete
             React setup and usage instructions in our{" "}
             <a
-              href="https://tech.causallabs.io/docs/howto/using-react"
+              href="https://tech.causallabs.io/docs/guide/TypeScript/using-react"
               target="new"
             >
               documentation
             </a>
-            .
+            . Here is an overview of how it works.
           </div>
-          <div>
-            At the top of our file, we import{" "}
-            <span className="inline-value">useFeature</span> from Causal
-            TypeScript SDK:
-            <code>
-              import &#123; qb, useFeature &#125; from
-              &quot;../components/causal&quot;;
-            </code>
-          </div>
-
-          <div>
-            We define a variable <span className="inline-value">feature</span>{" "}
-            to hold the <span className="inline-value">Example Feature</span>{" "}
-            data:
-            <code>const feature = useFeature(qb().getExampleFeature());</code>
-          </div>
-
-          <div>
-            In the <span className="inline-value">&lt;button&gt;</span>{" "}
-            component, we reference the feature&apos;s attributes to define
-            style elements and the button&apos;s copy:
-            <code>
-              <pre>
-                {`<button
-    style={{
-    width: feature?.width,
-    height: feature?.height,
-    background: feature?.backgroundColor,
-    color: feature?.fontColor,
-    }}
->
-    {feature?.callToActionCopy}
-</button>`}
-              </pre>
-            </code>
-          </div>
-        </section>
-        <section>
-          <h3>
-            Try it out: Edit this page to add a button &#x68;eadline managed by
-            Causal
-          </h3>
-
-          <aside className="note">
-            Reminder: All paths are relative to the{" "}
-            <span className="inline-value">hello-causal</span> directory
-          </aside>
-
-          <div>
-            1. In your favorite editor open the following file. It corresponds
-            to the webpage you are currently looking at. Changes to the file
-            will automatically be reflected in the browser.
-            <CopyableCodeBlock
-              txt={"./demo-ui/pages/reference-fdl-from-javascript.tsx"}
+          <div className="mt-2">
+            At the top of our card component file{" "}
+            <Literal>./demo-ui/components/Card/Card.tsx</Literal>, we import the
+            Causal hook <Literal>useFeature</Literal> from the TypeScript SDK:
+            <CodeBlock
+              className="mt-2"
+              code='import &#123; qb, useFeature &#125; from "../components/causal";'
+              language="typescript"
             />
           </div>
 
-          <div>
-            2. Find &quot;&#x48;eadline To Change&quot; in the code, replace it
-            with the code below, and save the file.
-            <CopyableCodeBlock txt={"{feature?.descriptiveCopy}"} />
+          <div className="mt-hc">
+            In the <Literal>&lt;Card /&gt;</Literal> component, we request the
+            card data:
+            <CodeBlock
+              className="mt-2"
+              code="const card = useFeature(qb().getSneakerCard());"
+              language="typescript"
+            />
           </div>
 
-          <div>
-            <b>
-              {/* -------------------------------------------------------------------- */}
-              {/* Replace "Headline To Change" below with "{feature?.descriptiveCopy}" */}
-              {/* Do this by deleting and uncommenting the lines below                 */}
-              {/* -------------------------------------------------------------------- */}
-              {/*                                                                      */}
-              {/* -- DELETE THE LINE BELOW -- */}
-              Headline To Change
-              {/* -- UNCOMMENT THE LINE BELOW --*/}
-              {/* {feature?.descriptiveCopy} */}
-            </b>
-
-            <br />
-            <button
-              style={{
-                width: feature?.width,
-                height: feature?.height,
-                background: feature?.backgroundColor,
-                color: feature?.fontColor,
-              }}
-              onClick={() => feature?.signalButtonClick()}
-            >
-              {feature?.callToActionCopy}
-            </button>
-          </div>
-
-          <div>
-            3. You should now see &quot;{feature?.descriptiveCopy}&quot; as the
-            &#x68;eadline above the button on this page. You just added a Causal
-            feature output to a Javascript app!
-          </div>
-
-          <div>
-            <i>
-              Bonus feature: If you type the following in your IDE, you&apos;ll
-              be able to see the available attributes in auto-complete.
-            </i>
-            <code>&#123;feature?.</code>
-          </div>
-
-          <h3>Watch how to do it</h3>
-          <div>
-            <a
-              href="https://www.loom.com/share/eda941f717224fe780d01090133440d5"
-              target="new"
-            >
-              <img
-                className="loom-thumbnail"
-                src="https://cdn.loom.com/sessions/thumbnails/eda941f717224fe780d01090133440d5-with-play.gif"
-              />
-            </a>
+          <div className="mt-hc">
+            And then we reference this data to set the text and style elements.{" "}
+            Here is the code for the button:
+            <CodeBlock
+              className="mt-2"
+              language="tsx"
+              code={`<button
+    className={s.button}
+    style={{
+        color: card?.buttonTextColor,
+        background: card?.buttonBackgroundColor,
+    }}
+>
+    {card?.buttonText}
+</button>
+  `}
+            />
           </div>
         </section>
+
+        <section className="mt-section">
+          <Video href="/movies/reference-fdl-from-javascript.mp4" />
+        </section>
+
         <section>
-          <div className="next-topic">
-            <Link href={`/managing-features-without-code`}>
-              Next: Managing features without code
-            </Link>
+          <h3 className="mt-hc">Try it out</h3>
+          <div className="font-bold">
+            Use Causal for the product description
           </div>
+
+          <Note className="mt-2">
+            Reminder: All paths are relative to the{" "}
+            <Literal>hello-causal</Literal> directory
+          </Note>
+
+          <Instruction num={1} className="mt-2">
+            In your favorite editor open the following file. It corresponds to
+            the Card component that displays the sneaker. Changes to the file
+            will automatically be reflected in the browser.
+            <CodeBlock
+              code={"./demo-ui/components/Card/Card.tsx"}
+              language="bash"
+              copyControl={true}
+            />
+          </Instruction>
+
+          <Instruction num={2}>
+            <div>
+              Delete the code that says <Literal>Hardcoded description</Literal>
+              .
+            </div>
+            <div className="mt-2">
+              Uncomment the code that says{" "}
+              <Literal>Causal enabled description</Literal>.
+            </div>
+            <CodeBlock
+              code={`{/* Hardcoded description */}
+<div className={s.description}>
+    Bright, red sneakers for your dynamic, elegant dash.
+</div>
+
+{/* Causal enabled description */}
+{/* 
+<div className={s.description}>{card?.productDescription} </div> 
+*/}`}
+              language="tsx"
+              copyControl={true}
+            />
+          </Instruction>
+
+          <CardWithGrid className="mt-hc" />
+
+          <Instruction num={3}>
+            You should now see{" "}
+            <Literal>
+              Bold, red sneakers for your unstoppable, stylish stride.
+            </Literal>{" "}
+            as the product description. You just added a Causal feature output
+            to a Javascript app!
+          </Instruction>
+
+          <Instruction num={undefined}>
+            <div className="italic">
+              Bonus tip: If you type the following in your IDE, you&apos;ll be
+              able to see the available attributes in auto-complete.
+            </div>
+
+            <CodeBlock
+              className="mt-hc"
+              code="&#123;card?."
+              language="typescript"
+            />
+
+            <img className="mt-hc" src="/autocomplete.png" />
+          </Instruction>
+        </section>
+
+        <section className="next-topic">
+          {" "}
+          <HCButton href="/managing-features-without-code">
+            Next: Managing features without code
+          </HCButton>
         </section>
       </div>
     </Layout>

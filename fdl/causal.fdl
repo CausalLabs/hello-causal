@@ -5,32 +5,30 @@
 ##
 ## to compile.
 
+## code: language=GraphQL
 
-feature ExampleFeature {
-    output {
+feature SneakerCard {     
+    # Feature attributes are defined by the keyword output
+    output { 
+        "Product Card Headline"
+        headline: String! = "NIKE AIR"
+        
+        "Product Description"
+        productDescription: String! =
+            "Bold, red sneakers for your unstoppable, stylish stride."
+        
         "the button text"
-        callToActionCopy: String! = "Click Me!"
-
-        "descriptive text above the button"
-        descriptiveCopy: String! = "This is an irresistible button:"
-
-        "the button width"
-        width: String! = "150px"
-
-        "the button height"
-        height: String! = "40px"
-
-        "the button background color // DEMO INSTRUCTIONS: Change the value below from 'red' to 'green'"
-        backgroundColor: String! = "red"
-
-        "the button font color"
-        fontColor: String! = "#ffffff"
+        buttonText: String! = "Buy"
+        
+        "the button background color"
+        buttonTextColor: String! = "black"
+        
+        "the button text color"   
+        buttonBackgroundColor: String! = "pink"
 
     }
 
-    "Occurs each time a user taps the button"
-    event ButtonClick {
-    }
+    event AddToCart {}
 }
 
 feature CrossSellFeature {
@@ -50,5 +48,269 @@ feature CrossSellFeature {
     event CrossSellItemClick{
         "The product clicked"
         productName: String!
+    }
+}
+
+session {
+  args {
+    "marketing channel"
+    marketingChannel: String! = "direct" @per
+
+    "marketing campaign"
+    marketingCampaign: String @per
+
+    "user id"
+    userId: String = "" @mutable @split_key @per
+
+    "User type: New or Returning"
+    userType: String = "New" @per
+  }
+}
+
+feature Store_HeaderTopHat {
+  args {}
+  output {
+    "tophat background color"
+    bgColor: String! = "bg-gray-900"
+
+    "tophat text color"
+    textColor: String! = "text-white"
+
+    "tophat text"
+    text: String! = "Get free delivery on orders over $100"
+  }
+}
+
+feature Store_HomePageOffers {
+  args {}
+  output {
+    "total number of offers to show"
+    offerCount: Int! = 3
+
+    "list of offers to show"
+    offerArray: [Offer] = [
+      {
+        id: 1,
+        title: "Download the app",
+        description: "Get an exclusive $5 off code",
+        href: "#"
+      },
+      {
+        id: 2,
+        title: "Return when you're ready",
+        description: "60 days of free returns",
+        href: "#"
+      },
+      {
+        id: 3,
+        title: "Sign up for our newsletter",
+        description: "15% off your first order",
+        href: "#"
+      }
+    ]
+  }
+}
+
+type Offer {
+  "offer id"
+  id: Int
+
+  "offer title"
+  title: String
+
+  "offer description"
+  description: String
+
+  "Deep link for the offer"
+  href: String
+}
+
+feature Store_Hero {
+  args {}
+  output {
+    "headline"
+    headline: String! = "Focus on what matters"
+
+    "subheadline"
+    subheadline: String! = "All the charts, datepickers, and notifications in the world can't beat checking off some items on a paper card."
+
+    "CTA on the button"
+    buttonCTA: String! = "Shop Productivity"
+
+    "Button color"
+    buttonColor: String! = "bg-indigo-600 hover:bg-indigo-700"
+
+    "Button font color"
+    buttonFontColor: String! = "text-white"
+  }
+
+  "Fired when the user clicks the Hero CTA button"
+  event heroClicked {}
+}
+
+feature Store_TrendingProductCarousel {
+  args {}
+  output {
+    "total number of products to show"
+    productCount: Int! = 4
+
+    "Carousel headline"
+    headline: String! = "Trending Products"
+
+    "list of products to show"
+    productArray: [Product]
+  }
+
+  "Fired each time a product is clicked in the carousel"
+  event ProductClicked {  
+      "product id"
+      productId: Int
+  }
+}
+
+type Product {
+  "product id"
+  id: Int
+
+  "product title"
+  title: String
+
+  "product description"
+  description: String
+
+  "product image"
+  image: String
+
+  "product price"
+  price: String
+}
+
+feature Store_PromoBanner {
+    args {}
+    output {
+        "banner headline"
+        headline: String = "Get 25% off during our one-time sale"
+
+        "banner subheadline"
+        subheadline: String = "Most of our products are limited releases that won't come back. Get your favorite items while they're in stock."
+        
+        "banner image"
+        image: String = "https://tailwindui.com/img/ecommerce-images/home-page-02-sale-full-width.jpg"
+        
+        "banner button cta"
+        buttonCTA: String = "Get access to our one-time sale"
+
+        "banner button color"
+        buttonColor: String = "bg-gray-900 hover:bg-gray-800"
+
+        "banner button text color"
+        buttonTextColor: String = "text-white"
+    }
+
+    "Fired when the user clicks the promo banner"
+    event PromoBannerClicked {}
+}
+
+feature Store_NewsletterSignup {
+  args {}
+  output {
+    "newsletter headline"
+    headline: String = "Sign up for our newsletter"
+
+    "newsletter subheadline"
+    subheadline: String = "The latest deals and savings, sent to your inbox weekly."
+
+    "newsletter button cta"
+    buttonCTA: String = "Sign up"
+
+    "newsletter button color"
+    buttonColor: String = "bg-indigo-600 hover:bg-indigo-700"
+
+    "newsletter button text color"
+    buttonTextColor: String = "text-white"
+  }
+
+  event NewsletterSignupClicked {}
+}
+
+feature Store_PenQuizPromoCard {
+  args {}
+  output {
+    "early access headline"
+    headline: String = "Find the perfect pen!"
+
+    "early access subheadline"
+    subheadline: String = "Take our pen quiz and get matched to the perfect pen. "
+
+    "early access button cta"
+    buttonCTA: String = "Go now"
+  }
+
+  "Fired when a user clicks on the quiz promo card"
+  event quizPromoClicked {}
+}
+
+feature Store_Quiz {
+  args {}
+  output {
+    quizHeadline: String = "Find the perfect pen"
+    quizSubheadline: String = "Take our quiz to find the perfect pen for you."
+    questionList: [Int] = [1, 3, 5]
+    questionOrder: [Int] = [3, 1, 5]
+  }
+  "Fired when an individual question is answered"
+  event answerQuestion {
+    "Question id that was answered"
+    questionId: Int! = 0
+
+    "Answer that the user selected"
+    answer: String! = ""
+
+  }
+  "Fired when the user completes the quiz"
+  event CompleteQuiz {}
+}
+
+"Product detail page"
+feature Store_productDetail {
+    args {}
+    output {}
+
+    "Triggered when a user adds an item to their cart"
+    event AddToCart {
+        "product id of the item added"
+        productId: Int! = 0
+
+        "Value of the product added to the cart in dollars"
+        productValue: Int! = 0
+    }
+}
+
+"Cart page"
+feature Store_cart {
+    args {}
+    output {}
+
+    "Fired when a user enters the checkout flow"
+    event EnterCheckout {
+        "Total items in cart"
+        cartSize: Int! = 0
+        
+        "Total value of items in cart"
+        cartValue: Int! = 0
+        
+    }
+}
+
+feature Store_checkout {
+    args {}
+    output {}
+
+    event CompleteCheckout {
+        "Total items in cart"
+        cartSize: Int! = 0
+        
+        "Total value of items in cart"
+        cartValue: Int! = 0
     }
 }
