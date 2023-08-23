@@ -1,0 +1,18 @@
+.grid {
+    /* Use linear-gradient to create horizontal and vertical grid lines */
+    background:
+        /* Horizontal lines */ linear-gradient(
+        to bottom,
+        rgba(211, 211, 211, 0.5) 0.5px,
+        transparent 0.5px
+      ),
+      /* Vertical lines */
+        linear-gradient(
+          to right,
+          rgba(211, 211, 211, 0.5) 0.5px,
+          transparent 0.5px
+        );
+  
+    /* Define the size of the squares */
+    background-size: 20px 20px;
+  }

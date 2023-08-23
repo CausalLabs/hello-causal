@@ -1,8 +1,11 @@
 import Head from "next/head";
-import Link from "next/link";
-import Layout from "../components/layout";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
+import { Layout } from "../components/Layout/Layout";
+import { CodeBlock } from "../components/CodeBlock/CodeBlock";
+import { Note } from "../components/Note/Note";
+import { HCButton } from "../components/HCButton/HCButton";
+import Link from "next/link";
 
 export default function EtlQuery() {
   const router = useRouter();
@@ -14,6 +17,9 @@ export default function EtlQuery() {
   const [ticks, setTicks] = useState(0);
   const [data, setData] = useState<string[][]>();
 
+  const maxDataLength = 200;
+  const origDataLength = useRef(0);
+
   const getData = useCallback(async () => {
     try {
       setState("loading");
@@ -24,7 +30,13 @@ export default function EtlQuery() {
       if (res.status == 200) {
         const resultSet = await res.json();
         setState("done");
-        setData(resultSet);
+
+        origDataLength.current = resultSet.length;
+        const tmp =
+          resultSet.length > maxDataLength
+            ? resultSet.slice(0, maxDataLength)
+            : resultSet;
+        setData(tmp);
       } else {
         setState("error");
       }
@@ -47,7 +59,7 @@ export default function EtlQuery() {
   return (
     <Layout>
       <Head>ETL Results for {queryId}</Head>
-      <h2 data-testid="sectionheader">Data warehouse response example</h2>
+      <h1 data-testid="sectionheader">Data warehouse response example</h1>
       <div>
         Click the "Run Query" button below to see the results of the following
         SQL in{" "}
@@ -58,47 +70,68 @@ export default function EtlQuery() {
           AWS Athena
         </Link>
         .
-        <code>select * from &quot;session&quot; order by ds desc, hh desc</code>{" "}
-        <aside className="note" style={{ marginTop: "-12px" }}>
-          Note: This can take up to 15 seconds to load.
-        </aside>
-        <button
-          disabled={state == "loading"}
-          className="demo-button"
-          onClick={getData}
-          style={{ width: "120px" }}
-        >
-          {state == "loading"
-            ? ticks
-            : state == "done"
-            ? "Run Again"
-            : "Run Query"}
-        </button>
       </div>
-      {state == "error" && "There was an error querying {queryId}"}
+      <CodeBlock
+        code='select * from "session" order by ds desc, hh desc limit 200'
+        language="sql"
+        className="mt-2"
+      />
+      <Note className="mt-hc">
+        Note: This can take up to 15 seconds to load.
+      </Note>
+      <HCButton
+        disabled={state == "loading"}
+        onClick={getData}
+        className="mt-hc"
+        width="180px"
+      >
+        {state == "loading"
+          ? "Running... " + ticks
+          : state == "done"
+          ? "Run Again"
+          : "Run Query"}
+      </HCButton>
+      {state == "error" && (
+        <span className="ml-2">There was an error querying "{queryId}"</span>
+      )}
       {state == "done" ? (
-        <div>
-          <table className="results-table">
-            <tbody>
-              {data?.map((row, idx1) => (
-                <tr key={idx1}>
-                  {row.map((cell, idx2) => (
-                    <td key={idx2}>{cell}</td>
+        <div className="mt-hc overflow-auto max-w-full max-h-[700px]">
+          {data && (
+            <table className="results-table w-full">
+              <thead>
+                <tr>
+                  {data[0]?.map((cell, idx) => (
+                    <th key={idx}>{cell}</th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {data.slice(1)?.map((row, idx1) => (
+                  <tr key={idx1}>
+                    {row.map((cell, idx2) => (
+                      <td key={idx2}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       ) : (
         <div style={{ height: "220px" }}></div>
       )}
-      <div style={{ clear: "both" }}></div>
-      <div className="prev-topic">
-        <Link href={`/viewing-the-data-warehouse`}>
-          Previous: Back to Viewing the data warehouse
-        </Link>
-      </div>
+
+      {data && origDataLength.current > maxDataLength && (
+        <div className="mt-hc italic text-gray-800">
+          Results limited to 200 rows
+        </div>
+      )}
+
+      <section className="next-topic">
+        <HCButton href="/viewing-the-data-warehouse">
+          Previous: Viewing the data warehouse
+        </HCButton>
+      </section>
     </Layout>
   );
 }

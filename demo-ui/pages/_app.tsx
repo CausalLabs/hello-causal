@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
 import { ReactNode } from "react";
 import { Session, SessionContext, SessionJSON } from "../components/causal";
-import { ClientOnly, getOrMakeDeviceId } from "../components/utils";
+import { getOrMakeDeviceId } from "../helpers/device";
 import "./globals.css";
 
 /**
@@ -21,12 +21,14 @@ export default function DemoApp({
   sessionJson: SessionJSON;
 }): ReactNode {
   const deviceId = getOrMakeDeviceId();
-  const session = new Session({ deviceId });
+  const session = new Session({
+    deviceId,
+    marketingChannel: "direct",
+    userType: "New",
+  });
   return (
-    <ClientOnly>
-      <SessionContext.Provider value={session}>
-        <Component {...pageProps} />
-      </SessionContext.Provider>
-    </ClientOnly>
+    <SessionContext.Provider value={session}>
+      <Component {...pageProps} />
+    </SessionContext.Provider>
   );
 }

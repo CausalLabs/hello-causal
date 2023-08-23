@@ -4,5 +4,16 @@ TOKEN=$(grep CAUSAL_TOKEN .env | cut -d= -f2)
 ENV=$(grep CAUSAL_ENVIRONMENT_ID .env | cut -d= -f2)
 COMPILER_VERSION=$(grep COMPILER_VERSION .compiler.version | cut -d= -f2)
 
+#append the architecture specific image.
+arch=$(uname -m)
+if [[ $arch == "x86_64" ]]; then
+    export PLATFORM=amd64
+elif [[ $arch == "arm64" ]]; then
+    export PLATFORM=arm64
+else
+    echo "UNKNOWN ARCHITECTURE $arch"
+    exit 1
+fi
+
 docker run --name causalc --rm -t --user "$(id -u):$(id -g)" -v "$(pwd)/fdl:/fdl" -v "$(pwd)/demo-ui:/demo-ui" \
--it causallabs/demo-compiler:"$COMPILER_VERSION" --token "$TOKEN" --environment "$ENV" "$@"
+    -it causallabs/demo-compiler:"$COMPILER_VERSION-$PLATFORM" --token "$TOKEN" --environment "$ENV" "$@"

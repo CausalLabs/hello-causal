@@ -1,6 +1,8 @@
 import Head from "next/head";
-import Layout from "../components/layout";
-import Link from "next/link";
+import { HCButton } from "../components/HCButton/HCButton";
+import { Layout } from "../components/Layout/Layout";
+import { LearnAbout } from "../components/LearnAbout/LearnAbout";
+import { Prerequisite } from "../components/Prerequisites/Prerequisites";
 
 export default function Home() {
   return (
@@ -10,57 +12,41 @@ export default function Home() {
       </Head>
       <div>
         <section>
-          <h2 data-testid="sectionheader">A Brief Intro to Causal</h2>
+          <h1 data-testid="sectionheader">Welcome!</h1>
           <div>
-            The goal of this demo application is to help you understand the
-            features and benefits of Causal so you feel confident using it in
-            your own codebase. If you need help using the demo, please email{" "}
-            <a href="mailto:support@causallabs.io">support@causallabs.io</a> and
-            we&apos;ll get right back to you.
+            This demo will go through examples that introduce you to Causal’s
+            powerful tools. In order to run this tutorial you will need a few
+            things open to get started.
+          </div>
+          <div className="mt-hc">
+            <Prerequisite />
           </div>
 
-          <table cellPadding="5px">
-            <tbody>
-              <tr>
-                <td>
-                  <h3>Demo Scope</h3>
-                  <div>This demo covers how to:</div>
-                  <ul>
-                    <li>Define a feature in Causal</li>
-                    <li>Use a Causal-defined feature in React</li>
-                    <li>Manage Causal-defined features without code</li>
-                    <li>Track user impressions and events</li>
-                    <li>Create a metric and run an experiment</li>
-                    <li>Connect Causal to an ML model with Sagemaker</li>
-                    <li>View Causal data in a data warehouse</li>
-                  </ul>
-                </td>
-                <td>
-                  <h3>Out of Scope</h3>
-                  <div>This demo does not cover how to:</div>
-                  <ul>
-                    <li>Define audiences</li>
-                    <li>Use other APIs, e.g. for Java, Ruby</li>
-                    <li>Use external data sources for metrics</li>
-                    <li>Set up your production environments</li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-        <section>
-          <aside className="note">
-            Note: Please make sure to leave the Docker container running
-            throughout this tutorial.
-          </aside>
-        </section>
-        <section>
-          <div className="next-topic">
-            <Link href={`/an-example-feature`}>Next: An Example Feature</Link>
+          <div className="mt-10">
+            <LearnAbout
+              title={
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "30px",
+                    left: "38px",
+                    margin: 0,
+                  }}
+                  className="text-2xl font-bold"
+                >
+                  This demo will cover:
+                </div>
+              }
+            />
           </div>
         </section>
-        <section></section>
+
+        <section className="next-topic">
+          {" "}
+          <HCButton href="/an-example-feature">
+            Next: An Example Feature
+          </HCButton>
+        </section>
       </div>
     </Layout>
   );
