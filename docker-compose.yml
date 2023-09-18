@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   demo-ui:
-    image: causallabs/demo-ui:hc1.0.7${DOCKER_ARCH_TAG_SUFFIX:-}
+    image: causallabs/demo-ui:hc1.0.8${DOCKER_ARCH_TAG_SUFFIX:-}
     ports:
       - "8842:8842"
       - "9255:9255" #debug using this port
@@ -11,9 +11,13 @@ services:
       NEXT_PUBLIC_AWS_USERNAME: ${AWS_USERNAME}
       NEXT_PUBLIC_AWS_PASSWORD: ${AWS_PASSWORD}
       NEXT_PUBLIC_AWS_URL: ${AWS_URL}
+      NEXT_PUBLIC_CAUSAL_BROWSER_ISERVER: "http://localhost:3004/iserver/"
+      CAUSAL_ISERVER: "http://iserver:3004/iserver/"
+      CAUSAL_QUERY_SERVER: "http://etl-query:8081"
     volumes:
       - ./demo-ui/components:/usr/local/app/components:ro
       - ./demo-ui/pages:/usr/local/app/pages:ro
+      - ./demo-ui/helpers:/usr/local/app/helpers:ro
       - ./demo-ui/public:/usr/local/app/public:ro
       - exclude:/usr/local/app/.next/
     healthcheck:
@@ -23,7 +27,7 @@ services:
       retries: 30
 
   iserver:
-    image: causallabs/demo-iserver:hc1.0.7${DOCKER_ARCH_TAG_SUFFIX:-}
+    image: causallabs/demo-iserver:hc1.0.8${DOCKER_ARCH_TAG_SUFFIX:-}
     environment:
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
@@ -43,7 +47,7 @@ services:
       retries: 10
 
   etl-query:
-    image: causallabs/demo-etl-query:hc1.0.7${DOCKER_ARCH_TAG_SUFFIX:-}
+    image: causallabs/demo-etl-query:hc1.0.8${DOCKER_ARCH_TAG_SUFFIX:-}
     environment:
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
@@ -60,7 +64,7 @@ services:
       retries: 10
 
   welcome:
-    image: causallabs/demo-welcome:hc1.0.7${DOCKER_ARCH_TAG_SUFFIX:-}
+    image: causallabs/demo-welcome:hc1.0.8${DOCKER_ARCH_TAG_SUFFIX:-}
     depends_on:
       iserver:
         condition: service_healthy

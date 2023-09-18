@@ -166,7 +166,7 @@ export default function CreatingExperiment() {
 
         <section className="mt-section">
           <div>
-            <SimulateExperiment />
+            <SimulateExperiment featureName="SneakerCard" />
           </div>
         </section>
 

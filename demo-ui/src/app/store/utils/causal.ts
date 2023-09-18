@@ -1243,6 +1243,11 @@ export class _ImpressionImpl extends (SessionEvents as ImpressionBase) {
   // Note: There is no impression id declared at this level
   // The features have impression ids as part of their outputs
 
+  /**
+   * Serializes an impression to JSON. Used in conjunction with [[toImpression]]. Useful to transfer an impression for SSR.
+   *
+   * @returns the serialized JSON
+   */
   toJSON() {
     return this._.json;
   }

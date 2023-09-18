@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { getSimulateJSON } from "../../helpers/simulate";
+import { useSession } from "../causal";
 import { HCButton } from "../HCButton/HCButton";
 
-export default function SimulateExperiment() {
+export default function SimulateExperiment({
+  featureName,
+}: {
+  featureName: "SneakerCard" | "CrossSellFeature";
+}) {
   const [state, setState] = useState<"none" | "running" | "done" | "error">(
     "none"
   );
 
+  const session = useSession();
+
   const [ticks, setTicks] = useState(0);
 
-  const [controlVal, setControlVal] = useState("5");
-  const [variantVal, setVariantVal] = useState("10");
+  const [controlVal, setControlVal] = useState(5);
+  const [variantVal, setVariantVal] = useState(10);
 
   const [res, setRes] = useState<Response>();
 
@@ -18,9 +26,19 @@ export default function SimulateExperiment() {
       setState("running");
       setTicks(0);
 
-      const response = await fetch(
-        `http://localhost:8842/api/simulateExperiment?controlPercent=${controlVal}&variantPercent=${variantVal}`
-      );
+      const body = getSimulateJSON(featureName, controlVal, variantVal);
+
+      // running the ETL kills all sessions, so flush the cache
+      // add a public method to do this
+      session?._.cache.deleteAll(true);
+
+      const response = await fetch("http://localhost:8842/api/simulate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
 
       setRes(response);
       if (response.status == 200) setState("done");
@@ -59,7 +77,7 @@ export default function SimulateExperiment() {
             value={controlVal}
             onChange={(e) =>
               setControlVal((v) =>
-                e.target.validity.valid ? e.target.value : v
+                e.target.validity.valid ? parseInt(e.target.value) : v
               )
             }
           />{" "}
@@ -76,7 +94,7 @@ export default function SimulateExperiment() {
             value={variantVal}
             onChange={(e) =>
               setVariantVal((v) =>
-                e.target.validity.valid ? e.target.value : v
+                e.target.validity.valid ? parseInt(e.target.value) : v
               )
             }
           />{" "}

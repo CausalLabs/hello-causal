@@ -59,8 +59,11 @@ session {
     "marketing campaign"
     marketingCampaign: String @per
 
+    "device_id"
+    deviceId: String! @persistent_key
+
     "user id"
-    userId: String = "" @mutable @split_key @per
+    userId: String @mutable @split_key @per
 
     "User type: New or Returning"
     userType: String = "New" @per

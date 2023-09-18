@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect=9232' next dev -p 8842",
+    "dev": "NODE_OPTIONS='--inspect=9235' next dev -p 8842",
     "build": "next build",
     "start": "next start -p 8842",
     "lint": "npx eslint components pages src --ext .js,.jsx,.ts,.tsx",

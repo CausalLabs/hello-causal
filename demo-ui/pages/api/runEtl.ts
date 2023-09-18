@@ -1,10 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { getCmdUrl } from "./utils";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const result = await fetch("http://iserver:3004/iserver/cmd", {
+  req; // unused
+  const cmdUrl = getCmdUrl();
+  const result = await fetch(cmdUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

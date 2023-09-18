@@ -21,8 +21,10 @@ export default function DemoApp({
   sessionJson: SessionJSON;
 }): ReactNode {
   const deviceId = getOrMakeDeviceId();
+  const userId = "interactive-hello-causal-user";
   const session = new Session({
     deviceId,
+    userId,
     marketingChannel: "direct",
     userType: "New",
   });
