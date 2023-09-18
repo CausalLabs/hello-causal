@@ -121,7 +121,7 @@ const Products: ProductType[] = [
     productDescription:
       "Natural leather journal with brass disc binding and three paper refill sets.",
     availableColors: [
-      { name: "Nautral", colorBg: "#FEF3C7", selectedColor: "ring-yellow-500" },
+      { name: "Natural", colorBg: "#FEF3C7", selectedColor: "ring-yellow-500" },
       { name: "Black", colorBg: "#1F2937", selectedColor: "ring-gray-700" },
       { name: "Brown", colorBg: "#7C2D12", selectedColor: "ring-yellow-900" },
     ],

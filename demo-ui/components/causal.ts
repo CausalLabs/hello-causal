@@ -95,9 +95,9 @@ export class SneakerCard extends FeatureBase {
     /** 
      * the button text color
      *
-     *  Control: "white"
+     *  Control: "pink"
      */
-    readonly buttonBackgroundColor: string = "white";
+    readonly buttonBackgroundColor: string = "pink";
 
     signalAddToCart(): void {
       signalInstance(this, "AddToCart", {} )
@@ -1243,6 +1243,11 @@ export class _ImpressionImpl extends (SessionEvents as ImpressionBase) {
   // Note: There is no impression id declared at this level
   // The features have impression ids as part of their outputs
 
+  /**
+   * Serializes an impression to JSON. Used in conjunction with [[toImpression]]. Useful to transfer an impression for SSR.
+   *
+   * @returns the serialized JSON
+   */
   toJSON() {
     return this._.json;
   }
@@ -4084,9 +4089,9 @@ export function useImpression<Q extends Query<FeatureNames>>(
 }
 
 /**
- Converts Feature<A|B|C> into Feature<A> | Feature<B> | Feature<C>
+ Converts Feature&lt;A|B|C&gt; into Feature&lt;A&gt; | Feature&lt;B&gt; | Feature&lt;C&gt;
  */
-type DistributeFeature<F> = F extends Feature<infer T>
+export type DistributeFeature<F> = F extends Feature<infer T>
   ? T extends unknown
     ? Feature<T>
     : never
@@ -4094,8 +4099,10 @@ type DistributeFeature<F> = F extends Feature<infer T>
 
 /**
  * React hook to get a single feature.
- *  As compared to [[useImpression]] this only retrieves a single feature.
- *  If the request is loading it will returned undefined.
+ *  As compared to [[useImpression]] this only retrieves a single feature.<br/>
+ *  If the feature is off it will return `"OFF"`.<br/>
+ *  If the request is loading it will returned undefined.<br/>
+ *  If the feature is loaded, it will return the feature.<br/>
  *  It does NOT return an error state, so you need to be happy with the control values on error.
  */
 export function useFeature<T extends FeatureNamesNoArgs>(
@@ -4106,8 +4113,10 @@ export function useFeature<T extends FeatureNamesNoArgs>(
 
 /**
  * React hook to get a single feature.
- *  As compared to [[useImpression]] this only retrieves a single feature.
- *  If the request is loading it will returned undefined.
+ *  As compared to [[useImpression]] this only retrieves a single feature.<br/>
+ *  If the feature is off it will return `"OFF"`.<br/>
+ *  If the request is loading it will returned undefined.<br/>
+ *  If the feature is loaded, it will return the feature.<br/>
  *  It does NOT return an error state, so you need to be happy with the control values on error.
  */
 export function useFeature<T extends FeatureNames>(

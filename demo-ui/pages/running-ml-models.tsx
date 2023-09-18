@@ -31,7 +31,7 @@ export default function RunningModels() {
           <h2 className="mt-hc min-h-[64px]">
             Causal helps you improve your ML models and ML operations.
           </h2>
-          <div className="mt-hc h-[128px]">
+          <div className="mt-hc min-h-[128px]">
             By linking an ML model to a Causal Feature attribute, you can:
             <ul className="pl-5 space-y-1 mt-2">
               <li className="flex">
@@ -65,7 +65,7 @@ export default function RunningModels() {
             products.
           </div>
           <div className="mt-hc">
-            <Grid className="h-[320px]">
+            <Grid className="h-[1020px] sm:h-[320px]">
               <XSell productName="apple" />
             </Grid>
           </div>
@@ -142,7 +142,7 @@ export default function RunningModels() {
           </Instruction>
 
           <div className="mt-hc">
-            <Grid className="h-[320px]">
+            <Grid className="h-[1020px] sm:h-[320px]">
               <XSell productName="apple" />
             </Grid>
           </div>
