@@ -51,8 +51,6 @@ export default function Page() {
     if (key?.startsWith("_causal_")) localStorage.removeItem(key);
   }
 
-  window.localStorage.setItem("_causal_registered", "true");
-
   const webtoolsUrl = getWebtoolsUrl();
   const redirectTo = `${webtoolsUrl}/QA?persistentId=${persistentId}`;
   router.push(redirectTo);
